@@ -99,6 +99,39 @@ document.getElementById("bottomBtn").href = link;
 </div>
 </section>
 <!-- LCB MASTER LIBRARY END -->
+  <!-- LCB DASHBOARD START -->
+<section style="padding:40px 15px;background:#111;color:#fff;text-align:center;font-family:sans-serif;">
+<h2 style="font-size:28px;">LCB Dashboard</h2>
+<p>Apna Dashboard Dekhein - Login Karein</p>
+<div style="max-width:500px;margin:20px auto;background:#fff;color:#111;padding:20px;border-radius:15px;text-align:left;">
+<label><b>Apna Naam Likhein</b></label><br>
+<input id="userName" type="text" placeholder="Jaise: Fezan" style="width:100%;padding:12px;margin:10px 0px;border-radius:10px;border:1px solid #ccc;"><br>
+<label><b>WhatsApp Number</b></label><br>
+<input id="userPhone" type="text" placeholder="03XX-XXXXXXX" style="width:100%;padding:12px;margin:10px 0px;border-radius:10px;border:1px solid #ccc;"><br>
+<button onclick="loginUser()" style="width:100%;padding:14px;background:#25D366;color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:bold;">Login / Dashboard Kholein</button>
+<p id="welcomeMsg" style="text-align:center;font-weight:bold;margin-top:15px;"></p>
+</div>
+<div style="max-width:900px;margin:auto;display:flex;flex-wrap:wrap;gap:15px;justify-content:center;">
+<div style="background:#fff;color:#111;padding:20px;border-radius:15px;width:250px;"><h3>💰 My Earning</h3><p>Rs. 0</p><p>Abhi shuruwat hai</p></div>
+<div style="background:#fff;color:#111;padding:20px;border-radius:15px;width:250px;"><h3>👥 My Team</h3><p>0 Members</p><p>Apni team banayein</p></div>
+<div style="background:#fff;color:#111;padding:20px;border-radius:15px;width:250px;"><h3>🔗 My Referral Link</h3><p id="refLink">Login ke baad milega</p><button onclick="copyLink()" style="padding:10px 15px;background:#111;color:#fff;border:none;border-radius:10px;">Copy Link</button></div>
+</div>
+</section>
+<script>
+function loginUser(){
+var n=document.getElementById('userName').value;
+var p=document.getElementById('userPhone').value;
+if(n==""){alert("Pehle Naam likhein");return;}
+document.getElementById('welcomeMsg').innerHTML="Welcome "+n+"! Aap ka Dashboard Active hai ✅";
+document.getElementById('refLink').innerHTML="https://fezan786.github.io/LCB-Life-Changing-Business/?ref="+n;
+}
+function copyLink(){
+var t=document.getElementById('refLink').innerText;
+navigator.clipboard.writeText(t);
+alert("Link Copy Ho Gaya!");
+}
+</script>
+<!-- LCB DASHBOARD END -->
 </body>
   <style>
 section h2, section h3, section p, section div {
