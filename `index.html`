@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LCB Dashboard - Life Changing Business</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#0f172a;color:white}
+.topbar{background:#16a34a;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.topbar b{font-size:22px;letter-spacing:2px}
+.menuBtn{background:white;border:none;padding:8px 14px;border-radius:8px;font-size:20px;cursor:pointer}
+.sidebar{position:fixed;top:0;left:-300px;width:280px;height:100%;background:#111827;padding:20px;transition:.3s;z-index:20;overflow-y:auto}
+.sidebar.open{left:0}
+.sidebar h3{color:#4ade80;margin:18px 0 8px;border-bottom:1px solid #333;padding-bottom:5px}
+.sidebar a,.sidebar button{display:block;width:100%;text-align:left;background:#1f2937;color:white;border:none;padding:11px;border-radius:8px;margin:5px 0;text-decoration:none;font-size:15px;cursor:pointer}
+.sidebar a:hover,.sidebar button:hover{background:#16a34a}
+.closeBtn{background:#ef4444!important;text-align:center!important}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;z-index:15}
+.overlay.show{display:block}
+.wrap{max-width:720px;margin:auto;padding:20px}
+.hero{text-align:center;padding:25px 10px}
+.hero h1{font-size:48px}
+.card{background:#1e293b;padding:18px;border-radius:15px;margin:12px 0}
+.card h3{color:#4ade80;margin-bottom:6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.box{background:white;color:#111;padding:14px;border-radius:12px;text-align:center}
+.box small{color:#666}
+.box b{font-size:20px;display:block;margin-top:4px}
+.btn{display:inline-block;margin:8px 5px;padding:13px 22px;border-radius:10px;text-decoration:none;font-weight:bold}
+.green{background:#25D366;color:white}.white{background:white;color:#111}
+input,select{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:none;font-size:16px}
+.lib-card{background:white;color:#111;padding:14px;border-radius:12px;margin:10px 0}
+.lib-card span{background:#dcfce7;color:#166534;padding:3px 9px;border-radius:20px;font-size:12px;font-weight:bold}
+footer{text-align:center;padding:20px;opacity:.7;font-size:13px}
+</style>
+</head>
+<body>
+<div class="topbar"><button class="menuBtn" onclick="toggleMenu()">☰</button><b>LCB</b><a href="https://wa.me/923010929666" style="color:white;text-decoration:none;font-weight:bold">WhatsApp</a></div>
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<div class="sidebar" id="sidebar">
+<button class="closeBtn" onclick="toggleMenu()">✕ Band Karein</button>
+<h3>📊 My Earning</h3>
+<a href="#earning">Daily Earning</a><a href="#earning">Weekly Earning</a><a href="#earning">Mahana Earning</a><a href="#earning">Salana Earning</a><a href="#earning">Total Earning</a>
+<h3>👥 My Team</h3>
+<a href="#team">Daily Team</a><a href="#team">Weekly Team</a><a href="#team">Mahana Team</a><a href="#team">Total Team</a>
+<h3>🔗 Referral</h3>
+<button onclick="copyRef()">Referral Link Copy Karein</button>
+<p id="refText" style="font-size:12px;word-break:break-all;margin-top:5px;color:#4ade80">https://lcb.com/?ref=ZAYBI123</p>
+<h3>📱 Menu</h3>
+<a href="#contact">Contact Us</a><a href="#watch">🎬 Watch Video - Earning</a><a href="#promote">📢 Promote Channel</a><a href="#course">🎓 Course Sale</a><a href="#market">🛒 Marketplace</a><a href="#library">📚 120 Models Library</a>
+</div>
+<div class="wrap">
+<div class="hero"><h1>LCB</h1><p>Life Changing Business</p><p>Apna Dost Zaybi - Pehle Kaam, Phir Paisa</p>
+<a class="btn green" href="https://wa.me/923010929666?text=Assalam-o-Alaikum%20Zaybi%20Bhai%20Mujhe%20LCB%20Join%20Karna%20Hai">WhatsApp Par Rabta Karein</a></div>
+<div class="card" id="earning"><h3>💰 My Earning</h3><div class="grid">
+<div class="box"><small>Daily Earning</small><b>Rs. 0</b></div>
+<div class="box"><small>Weekly Earning</small><b>Rs. 0</b></div>
+<div class="box"><small>Mahana Earning</small><b>Rs. 0</b></div>
+<div class="box"><small>Salana Earning</small><b>Rs. 0</b></div>
+</div><div class="box" style="margin-top:10px;background:#dcfce7"><small>Total Earning</small><b>Rs. 0</b></div></div>
+<div class="card" id="team"><h3>👥 My Team</h3><div class="grid">
+<div class="box"><small>Daily Team</small><b>0 Members</b></div>
+<div class="box"><small>Weekly Team</small><b>0 Members</b></div>
+<div class="box"><small>Mahana Team</small><b>0 Members</b></div>
+<div class="box"><small>Total Team</small><b>0 Members</b></div>
+</div></div>
+<div class="card" id="watch"><h3>🎬 Watch Video - Earning</h3><p>Video dekho, earning karo. Neeche video dekhne ke liye click karo.</p><a class="btn white" href="https://youtube.com" target="_blank">Video Dekhein</a></div>
+<div class="card" id="course"><h3>🎓 Course Sale</h3><p>Apna course yahan add karke sale karo.</p><input placeholder="Apne Course ka Naam Likhein"><input placeholder="Course ki Price - Rs."><button class="btn green" onclick="alert('Course Add Ho Gaya!')">Course Add Karein</button></div>
+<div class="card" id="promote"><h3>📢 Promote Channel / Page</h3><p>Apna YouTube Channel ya Facebook Page promote karwao.</p><a class="btn white" href="https://wa.me/923010929666?text=Mujhe%20Channel%20Promote%20Karwana%20Hai">Promote Karwao</a></div>
+<div class="card" id="market"><h3>🛒 Marketplace</h3><p>Yahan se cheezein khareedo aur becho.</p><a class="btn white" href="#library">Marketplace Dekhein</a></div>
+<div class="card" id="contact"><h3>📞 Contact Us</h3><p>Zaybi Bhai - Lahore, Pakistan<br>WhatsApp: 0301-0929666</p><a class="btn green" href="https://wa.me/923010929666">WhatsApp Karein</a></div>
+<div class="card" id="library"><h3>📚 120 Models Library - Sab Earning Tareeqay</h3>
+<p>Jo kaam karna hai us pe click karo. Video dekhni hai to Watch Video, Course bechna hai to Course Sale.</p>
+<input id="searchInput" placeholder="Search... Food, Video, Course, Shop" onkeyup="filterLib()">
+<select id="catFilter" onchange="filterLib()"><option value="all">Sab Categories</option><option value="Watch Video">Watch Video</option><option value="Course Sale">Course Sale</option><option value="Food">Food</option><option value="Online">Online</option><option value="Shop">Shop</option><option value="Service">Service</option></select>
+<div id="libList"></div><p id="countText" style="text-align:center;margin-top:8px"></p></div>
+</div>
+<footer>© 2026 LCB - Life Changing Business | Lahore</footer>
+<script>
+function toggleMenu(){document.getElementById("sidebar").classList.toggle("open");document.getElementById("overlay").classList.toggle("show");}
+function copyRef(){navigator.clipboard.writeText(document.getElementById("refText").innerText);alert("Referral Link Copy Ho Gaya!");}
+const base=[["Watch Video - YouTube Earning","Watch Video","Video dekho aur earning karo."],["Watch Video - Ads Dekho","Watch Video","Ads dekh ke paisa kamao."],["Course Sale - English Course","Course Sale","Apna English course becho."],["Course Sale - Computer Course","Course Sale","Computer course sale karo."],["Food - Biryani Stall","Food","Roz ki cash income."],["Food - Burger Point","Food","Students ka favourite."],["Online - Freelancing","Online","Skill se dollar kamao."],["Online - YouTube Channel","Online","Video banao paisa kamao."],["Shop - Kirana Store","Shop","Mohalle ka pakka business."],["Service - Mobile Repair","Service","Har gali me zaroorat."]];
+let all=[];for(let i=1;i<=120;i++){let m=base[(i-1)%base.length];all.push({name:m[0]+" "+i,cat:m[1],desc:m[2]});}
+function show(list){let h="";list.forEach(x=>{h+=`<div class="lib-card"><b>${x.name}</b> <span>${x.cat}</span><p>${x.desc}</p><a href="https://wa.me/923010929666?text=Mujhe%20${encodeURIComponent(x.name)}%20Shuru%20Karna%20Hai" style="color:#16a34a;font-weight:bold;text-decoration:none">Is Kaam Ke Liye Rabta Karein →</a></div>`});document.getElementById("libList").innerHTML=h;document.getElementById("countText").innerText=list.length+" Models Milay";}
+function filterLib(){let s=document.getElementById("searchInput").value.toLowerCase();let c=document.getElementById("catFilter").value;show(all.filter(x=>(c==="all"||x.cat===c)&&x.name.toLowerCase().includes(s)));}
+show(all);
+</script>
+</body>
+</html>
