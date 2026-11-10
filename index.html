@@ -99,6 +99,78 @@ document.getElementById("bottomBtn").href = link;
 </div>
 </section>
 <!-- LCB MASTER LIBRARY END -->
+  <!-- LCB LEFT SIDEBAR START -->
+<style>
+.lcb-top{position:fixed;top:0;left:0;right:0;background:#111;color:#fff;display:flex;align-items:center;gap:12px;padding:12px 15px;z-index:999;}
+.lcb-top b{font-size:19px;}
+.lcb-menu-btn{background:#25D366;color:#fff;border:none;padding:8px 14px;border-radius:10px;font-size:16px;}
+.lcb-side{position:fixed;top:0;left:-280px;width:270px;height:100%;background:#fff;color:#111;z-index:1000;padding:20px;transition:0.3s;box-shadow:0 0 20px rgba(0,0,0,0.4);overflow-y:auto;}
+.lcb-side h3{margin:5px 0 15px 0;}
+.lcb-main-btn{display:block;width:100%;text-align:left;padding:13px;background:#111;color:#fff;border:none;border-radius:10px;font-weight:bold;margin:8px 0;font-size:15px;}
+.lcb-sub{display:none;padding-left:10px;}
+.lcb-sub a{display:block;padding:11px;background:#f1f1f1;margin:6px 0;border-radius:10px;color:#111;text-decoration:none;font-weight:bold;font-size:14px;}
+.lcb-close{background:#e74c3c;color:#fff;border:none;padding:8px 12px;border-radius:8px;margin-bottom:10px;}
+.lcb-box{background:#fff;border:1px solid #ddd;padding:15px;border-radius:12px;margin:10px 0;}
+</style>
+
+<div class="lcb-top">
+<button class="lcb-menu-btn" onclick="openMenu()">☰ Menu</button>
+<b>LCB 🔥 Life Changing Business</b>
+</div>
+
+<div id="lcbSide" class="lcb-side">
+<button class="lcb-close" onclick="closeMenu()">✖ Band Karein</button>
+<h3>LCB Menu</h3>
+
+<button class="lcb-main-btn" onclick="goTo('dashboard')">📊 Dashboard</button>
+
+<button class="lcb-main-btn" onclick="toggleMenu('teamSub')">👥 My Team ▼</button>
+<div id="teamSub" class="lcb-sub">
+<a href="#team-daily">🟢 Aaj Join Hoi Team - 0</a>
+<a href="#team-weekly">📅 Is Haftay Join Hoi Team - 0</a>
+<a href="#team-total">👥 Total Team - 0</a>
+<a href="#team-pending">⏳ Pending Team - 0</a>
+<a href="#team-referral">🔗 Referral Link</a>
+</div>
+
+<button class="lcb-main-btn" onclick="toggleMenu('earningSub')">💰 My Earning ▼</button>
+<div id="earningSub" class="lcb-sub">
+<a href="#earn-daily">💰 Daily Earning - Rs. 0</a>
+<a href="#earn-weekly">📅 Weekly Earning - Rs. 0</a>
+<a href="#earn-monthly">📆 Mahana Earning - Rs. 0</a>
+<a href="#earn-yearly">📈 Salana Earning - Rs. 0</a>
+<a href="#earn-total">🏆 Total Earning - Rs. 0</a>
+</div>
+
+<button class="lcb-main-btn" onclick="goTo('library')">📚 120 Models Library</button>
+<a href="https://wa.me/923010920666" target="_blank" style="display:block;padding:13px;background:#25D366;color:#fff;border-radius:10px;text-align:center;text-decoration:none;font-weight:bold;margin-top:10px;">💬 WhatsApp Contact</a>
+</div>
+
+<div id="dashboard" style="padding:80px 15px 20px 15px;text-align:center;">
+<h2>📊 LCB Dashboard</h2>
+<p>Welcome! Apni Team aur Earning yahan dekhein</p>
+</div>
+
+<div id="team-daily" class="lcb-box"><h3>🟢 Aaj Join Hoi Team</h3><p>0 Members - Aaj koi naya member nahi aaya</p></div>
+<div id="team-weekly" class="lcb-box"><h3>📅 Is Haftay Join Hoi Team</h3><p>0 Members</p></div>
+<div id="team-total" class="lcb-box"><h3>👥 Total Team</h3><p>0 Members</p></div>
+<div id="team-pending" class="lcb-box"><h3>⏳ Pending Team</h3><p>0 Pending - Sab approved hain</p></div>
+<div id="team-referral" class="lcb-box"><h3>🔗 Referral Link</h3><p id="refLink">https://fezan786.github.io/LCB-Life-Changing-Business/</p><button onclick="copyLink()" style="padding:10px 15px;background:#25D366;color:#fff;border:none;border-radius:10px;">Copy Link</button></div>
+
+<div id="earn-daily" class="lcb-box"><h3>💰 Daily Earning</h3><p>Rs. 0</p></div>
+<div id="earn-weekly" class="lcb-box"><h3>📅 Weekly Earning</h3><p>Rs. 0</p></div>
+<div id="earn-monthly" class="lcb-box"><h3>📆 Mahana Earning</h3><p>Rs. 0</p></div>
+<div id="earn-yearly" class="lcb-box"><h3>📈 Salana Earning</h3><p>Rs. 0</p></div>
+<div id="earn-total" class="lcb-box"><h3>🏆 Total Earning</h3><p>Rs. 0</p></div>
+
+<script>
+function openMenu(){document.getElementById('lcbSide').style.left='0px';}
+function closeMenu(){document.getElementById('lcbSide').style.left='-280px';}
+function toggleMenu(id){var x=document.getElementById(id);x.style.display=(x.style.display=='block')?'none':'block';}
+function goTo(id){closeMenu();document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+function copyLink(){navigator.clipboard.writeText(document.getElementById('refLink').innerText);alert('Link Copy Ho Gaya!');}
+</script>
+<!-- LCB LEFT SIDEBAR END -->
   <!-- LCB DASHBOARD START -->
 <section style="padding:40px 15px;background:#111;color:#fff;text-align:center;font-family:sans-serif;">
 <h2 style="font-size:28px;">LCB Dashboard</h2>
