@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LCB - Life Changing Business</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#0f172a;color:white;text-align:center}
+header{padding:50px 20px;background:linear-gradient(135deg,#16a34a,#0ea5e9)}
+header h1{font-size:55px;letter-spacing:3px}
+header p{font-size:20px;margin-top:10px}
+.btn{display:inline-block;margin:15px 8px;padding:15px 28px;border-radius:30px;text-decoration:none;font-weight:bold;font-size:17px}
+.green{background:#25D366;color:white}
+.white{background:white;color:#0f172a}
+section{padding:35px 20px;max-width:700px;margin:auto;text-align:left}
+.card{background:#1e293b;padding:20px;border-radius:15px;margin:15px 0}
+.card h3{color:#4ade80;margin-bottom:8px}
+footer{padding:20px;font-size:14px;opacity:.7}
+</style>
+</head>
+<body>
+<header>
+<h1>LCB</h1>
+<p>Life Changing Business</p>
+<p>Apni Zindagi Badlo, Apna Business Shuru Karo</p>
+<a class="btn green" id="topBtn" href="#" target="_blank">WhatsApp Par Rabta Karein</a>
+<a class="btn white" href="#about">Mazeed Janiye</a>
+</header>
+<section id="about">
+<h2 style="text-align:center;margin-bottom:10px;">LCB Kya Hai?</h2>
+<div class="card">
+<h3>✅ Real Business</h3>
+<p>LCB me aap ghar beth kar apna online business shuru kar sakte hain. Koi bari investment nahi, sirf mehnat aur seekhna hai.</p>
+</div>
+<div class="card">
+<h3>✅ Full Training</h3>
+<p>Join karne ke baad aapko mukammal training aur team ka support milega. Aap akelay nahi honge.</p>
+</div>
+<div class="card">
+<h3>✅ Daily Earning Ka Moka</h3>
+<p>Jo jitni mehnat karega, utna aage jayega. Yahan mehnat ka sila zaroor milta hai.</p>
+</div>
+</section>
+<section style="text-align:center;">
+<h2>Join Karna Hai?</h2>
+<p style="margin:12px 0;">Neeche wale button par click karke abhi WhatsApp par message karein.</p>
+<a class="btn green" id="bottomBtn" href="#" target="_blank">Abhi Join Karein - WhatsApp</a>
+<p style="margin-top:15px;">WhatsApp: <b>03010929666</b></p>
+</section>
+<footer>© 2026 LCB - Life Changing Business</footer>
+<script>
+// YAHAN APNA NUMBER BADLO - SIRF YAHAN
+// 03010929666 ko badal kar apna naya number likho, 0 hata kar aage 92 lagao
+const WHATSAPP_NUMBER = "923010929666";
+const msg = "Assalam-o-Alaikum! Mujhe LCB join karni hai. Details bata dein.";
+const link = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg);
+document.getElementById("topBtn").href = link;
+document.getElementById("bottomBtn").href = link;
+</script>
+</body>
+</html>
