@@ -86,5 +86,100 @@ function show(list){let h="";list.forEach(x=>{h+=`<div class="lib-card"><b>${x.n
 function filterLib(){let s=document.getElementById("searchInput").value.toLowerCase();let c=document.getElementById("catFilter").value;show(all.filter(x=>(c==="all"||x.cat===c)&&x.name.toLowerCase().includes(s)));}
 show(all);
 </script>
+  <!-- ===== PROMOTE CHANNEL + OWNER PANEL ===== -->
+<div style="background:#1a1a2e; padding:20px; border-radius:15px; margin:15px;">
+  <h2 style="color:#00ff88;">📢 Channel Promote Karein</h2>
+  <p style="color:white;">Promote Fees: <b id="showPrice" style="color:#00ff88;">Rs. 0</b></p>
+  <p style="color:white;">Payment bhejein is number pe:</p>
+  <p style="background:white; padding:10px; border-radius:10px;">
+    JazzCash: <b id="showJazz">03010929666</b><br>
+    Easypaisa: <b id="showEasy">03010929666</b>
+  </p>
+
+  <input id="chName" type="text" placeholder="Channel ka Naam" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
+  <input id="chLink" type="text" placeholder="Channel ka Link" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
+  <input id="chVideo" type="text" placeholder="Video ka Link" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
+  
+  <select id="payMethod" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
+    <option>JazzCash</option>
+    <option>Easypaisa</option>
+  </select>
+  <input id="payNumber" type="text" placeholder="Jis Number se Payment ki hai" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
+  <input id="payTrx" type="text" placeholder="Transaction ID / TID" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
+
+  <button onclick="promoteChannel()" style="width:100%; background:#00ff88; padding:14px; border:none; border-radius:10px; font-weight:bold;">Pay Karke Promote Karein</button>
+
+  <h3 style="color:white; margin-top:20px;">🔥 Promoted Channels</h3>
+  <div id="promotedList"></div>
+</div>
+
+<!-- ===== OWNER PANEL - SIRF OWNER KE LIYE ===== -->
+<div style="background:#222; padding:20px; border-radius:15px; margin:15px; border:2px dashed #ffaa00;">
+  <h2 style="color:#ffaa00;">⚙️ Owner Panel - Payment Setting</h2>
+  <p style="color:#ccc; font-size:13px;">Sirf Owner ke liye hai. Yahan se Price aur Number badlein.</p>
+  
+  <input id="adminPass" type="password" placeholder="Owner Password likhein" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
+  <button onclick="unlockOwner()" style="width:100%; background:#ffaa00; padding:12px; border:none; border-radius:10px; font-weight:bold;">Owner Panel Kholein</button>
+
+  <div id="ownerControls" style="display:none; margin-top:15px;">
+    <label style="color:white;">Promote Fees (Rs.) - Abhi 0 hai, yahan se badlein</label>
+    <input id="setPrice" type="number" placeholder="e.g. 200" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
+    
+    <label style="color:white;">JazzCash Number - Alag se badal sakte hain</label>
+    <input id="setJazz" type="text" placeholder="JazzCash Number" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
+    
+    <label style="color:white;">Easypaisa Number - Alag se badal sakte hain</label>
+    <input id="setEasy" type="text" placeholder="Easypaisa Number" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
+    
+    <label style="color:white;">Owner Password Badlein</label>
+    <input id="setPass" type="text" placeholder="Naya Password" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
+
+    <button onclick="saveOwnerSettings()" style="width:100%; background:#00ff88; padding:14px; border:none; border-radius:10px; font-weight:bold; margin-top:10px;">Save Karein - Sab ke paas Update Ho Jayega</button>
+    <p style="color:#00ff88; text-align:center;" id="saveMsg"></p>
+  </div>
+</div>
+
+<script>
+let settings = JSON.parse(localStorage.getItem('lcb_settings')) || { price: 0, jazz: '03010929666', easy: '03010929666', pass: 'bs226762' };
+
+function loadSettings(){
+  document.getElementById('showPrice').innerText = 'Rs. ' + settings.price;
+  document.getElementById('showJazz').innerText = settings.jazz;
+  document.getElementById('showEasy').innerText = settings.easy;
+  document.getElementById('setPrice').value = settings.price;
+  document.getElementById('setJazz').value = settings.jazz;
+  document.getElementById('setEasy').value = settings.easy;
+  document.getElementById('setPass').value = settings.pass;
+}
+loadSettings();
+
+function unlockOwner(){
+  var p = document.getElementById('adminPass').value;
+  if(p == settings.pass){
+    document.getElementById('ownerControls').style.display = 'block';
+    alert('Owner Panel Khul Gaya!');
+  } else { alert('Ghalat Password!'); }
+}
+
+function saveOwnerSettings(){
+  settings.price = document.getElementById('setPrice').value;
+  settings.jazz = document.getElementById('setJazz').value;
+  settings.easy = document.getElementById('setEasy').value;
+  settings.pass = document.getElementById('setPass').value;
+  localStorage.setItem('lcb_settings', JSON.stringify(settings));
+  loadSettings();
+  document.getElementById('saveMsg').innerText = '✅ Save Ho Gaya! Ab Member ko Naya Price aur Naya Number Nazar Aayega.';
+}
+
+function promoteChannel(){
+  var name = document.getElementById('chName').value;
+  var link = document.getElementById('chLink').value;
+  var video = document.getElementById('chVideo').value;
+  if(name=="" || link==""){ alert("Naam aur Link zaroor likhein"); return; }
+  var list = document.getElementById('promotedList');
+  list.innerHTML += "<div style='background:white; padding:12px; border-radius:10px; margin:8px 0;'><b>"+name+"</b><br><a href='"+link+"' target='_blank'>Channel Dekhein</a> | <a href='"+video+"' target='_blank'>Video Dekhein</a><br><small>Fees: Rs. "+settings.price+"</small></div>";
+  alert("Shukriya! Aapka channel promote ke liye add ho gaya. Owner check karke approve karega.");
+}
+</script>
 </body>
 </html>
