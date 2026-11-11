@@ -3,184 +3,237 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LCB Dashboard - Life Changing Business</title>
+<title>LCB - Life Changing Business | Zaybi Dost</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#0f172a;color:white}
-.topbar{background:#16a34a;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
-.topbar b{font-size:22px;letter-spacing:2px}
-.menuBtn{background:white;border:none;padding:8px 14px;border-radius:8px;font-size:20px;cursor:pointer}
-.sidebar{position:fixed;top:0;left:-300px;width:280px;height:100%;background:#111827;padding:20px;transition:.3s;z-index:20;overflow-y:auto}
-.sidebar.open{left:0}
-.sidebar h3{color:#4ade80;margin:18px 0 8px;border-bottom:1px solid #333;padding-bottom:5px}
-.sidebar a,.sidebar button{display:block;width:100%;text-align:left;background:#1f2937;color:white;border:none;padding:11px;border-radius:8px;margin:5px 0;text-decoration:none;font-size:15px;cursor:pointer}
-.sidebar a:hover,.sidebar button:hover{background:#16a34a}
-.closeBtn{background:#ef4444!important;text-align:center!important}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;z-index:15}
-.overlay.show{display:block}
-.wrap{max-width:720px;margin:auto;padding:20px}
-.hero{text-align:center;padding:25px 10px}
-.hero h1{font-size:48px}
-.card{background:#1e293b;padding:18px;border-radius:15px;margin:12px 0}
-.card h3{color:#4ade80;margin-bottom:6px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.box{background:white;color:#111;padding:14px;border-radius:12px;text-align:center}
-.box small{color:#666}
-.box b{font-size:20px;display:block;margin-top:4px}
-.btn{display:inline-block;margin:8px 5px;padding:13px 22px;border-radius:10px;text-decoration:none;font-weight:bold}
-.green{background:#25D366;color:white}.white{background:white;color:#111}
-input,select{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:none;font-size:16px}
-.lib-card{background:white;color:#111;padding:14px;border-radius:12px;margin:10px 0}
-.lib-card span{background:#dcfce7;color:#166534;padding:3px 9px;border-radius:20px;font-size:12px;font-weight:bold}
-footer{text-align:center;padding:20px;opacity:.7;font-size:13px}
+header{background:#1e293b;padding:15px;text-align:center;position:sticky;top:0;z-index:99}
+header h1{color:#22c55e;font-size:24px}
+header p{font-size:13px;color:#cbd5e1}
+.top-btns{display:flex;gap:8px;justify-content:center;margin:12px 0;flex-wrap:wrap}
+.btn{padding:10px 16px;border-radius:25px;border:none;font-weight:bold;cursor:pointer;font-size:14px}
+.green{background:#22c55e;color:white}
+.white{background:white;color:#0f172a}
+.orange{background:#f97316;color:white}
+.blue{background:#3b82f6;color:white}
+.container{max-width:950px;margin:auto;padding:15px}
+.card{background:#1e293b;border-radius:15px;padding:16px;margin-bottom:15px;border:1px solid #334155}
+.card h3{color:#22c55e;margin-bottom:8px}
+.card p{font-size:14px;color:#cbd5e1;line-height:1.6}
+input,select,textarea{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:1px solid #475569;background:#0f172a;color:white}
+.cat{background:#0f172a;border:1px solid #334155;border-radius:12px;padding:12px;margin-top:12px}
+.cat h4{color:#facc15;margin-bottom:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.model{background:#1e293b;border:1px solid #475569;padding:10px;border-radius:10px;cursor:pointer}
+.model b{font-size:13px}
+.model span{font-size:11px;color:#94a3b8}
+.price-box{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.price{flex:1;min-width:130px;background:#0f172a;border:1px solid #22c55e;border-radius:12px;padding:12px;text-align:center;cursor:pointer}
+.price b{color:#22c55e}
+#zaybiChat{display:none;background:#020617;border:2px solid #22c55e;border-radius:15px;padding:12px;margin-top:10px}
+#zaybiMsg{height:220px;overflow:auto;background:#0f172a;padding:10px;border-radius:10px;font-size:14px;line-height:1.7}
+#ownerPanel{display:none;background:#fef3c7;color:#111;padding:12px;border-radius:12px;margin-top:10px}
+#detailBox{display:none;background:#020617;border:2px solid #f97316;border-radius:15px;padding:15px;margin-top:10px}
+.wallet{background:#052e16;border:1px solid #22c55e;padding:12px;border-radius:12px;text-align:center;margin-bottom:15px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tab{padding:8px 14px;border-radius:20px;background:#334155;cursor:pointer;font-size:13px;font-weight:bold}
+.tab.active{background:#22c55e}
 </style>
 </head>
 <body>
-<div class="topbar"><button class="menuBtn" onclick="toggleMenu()">☰</button><b>LCB</b><a href="https://wa.me/923010929666" style="color:white;text-decoration:none;font-weight:bold">WhatsApp</a></div>
-<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-<div class="sidebar" id="sidebar">
-<button class="closeBtn" onclick="toggleMenu()">✕ Band Karein</button>
-<h3>📊 My Earning</h3>
-<a href="#earning">Daily Earning</a><a href="#earning">Weekly Earning</a><a href="#earning">Mahana Earning</a><a href="#earning">Salana Earning</a><a href="#earning">Total Earning</a>
-<h3>👥 My Team</h3>
-<a href="#team">Daily Team</a><a href="#team">Weekly Team</a><a href="#team">Mahana Team</a><a href="#team">Total Team</a>
-<h3>🔗 Referral</h3>
-<button onclick="copyRef()">Referral Link Copy Karein</button>
-<p id="refText" style="font-size:12px;word-break:break-all;margin-top:5px;color:#4ade80">https://lcb.com/?ref=ZAYBI123</p>
-<h3>📱 Menu</h3>
-<a href="#contact">Contact Us</a><a href="#watch">🎬 Watch Video - Earning</a><a href="#promote">📢 Promote Channel</a><a href="#course">🎓 Course Sale</a><a href="#market">🛒 Marketplace</a><a href="#library">📚 120 Models Library</a>
+<header>
+<h1>LCB - Life Changing Business</h1>
+<p>120 Online Earning Models | Sab Kuch Ek Platform Ke Andar</p>
+<div class="top-btns">
+<button class="btn green" onclick="openZaybi()">🤖 Zaybi Dost Se Baat Karen</button>
+<button class="btn white" onclick="openWhatsApp()">💬 WhatsApp - Owner Se Baat</button>
+<button class="btn orange" onclick="showOwner()">⚙️ Owner Panel</button>
 </div>
-<div class="wrap">
-<div class="hero"><h1>LCB</h1><p>Life Changing Business</p><p>Apna Dost Zaybi - Pehle Kaam, Phir Paisa</p>
-<a class="btn green" href="https://wa.me/923010929666?text=Assalam-o-Alaikum%20Zaybi%20Bhai%20Mujhe%20LCB%20Join%20Karna%20Hai">WhatsApp Par Rabta Karein</a></div>
-<div class="card" id="earning"><h3>💰 My Earning</h3><div class="grid">
-<div class="box"><small>Daily Earning</small><b>Rs. 0</b></div>
-<div class="box"><small>Weekly Earning</small><b>Rs. 0</b></div>
-<div class="box"><small>Mahana Earning</small><b>Rs. 0</b></div>
-<div class="box"><small>Salana Earning</small><b>Rs. 0</b></div>
-</div><div class="box" style="margin-top:10px;background:#dcfce7"><small>Total Earning</small><b>Rs. 0</b></div></div>
-<div class="card" id="team"><h3>👥 My Team</h3><div class="grid">
-<div class="box"><small>Daily Team</small><b>0 Members</b></div>
-<div class="box"><small>Weekly Team</small><b>0 Members</b></div>
-<div class="box"><small>Mahana Team</small><b>0 Members</b></div>
-<div class="box"><small>Total Team</small><b>0 Members</b></div>
-</div></div>
-<div class="card" id="watch"><h3>🎬 Watch Video - Earning</h3><p>Video dekho, earning karo. Neeche video dekhne ke liye click karo.</p><a class="btn white" href="https://youtube.com" target="_blank">Video Dekhein</a></div>
-<div class="card" id="course"><h3>🎓 Course Sale</h3><p>Apna course yahan add karke sale karo.</p><input placeholder="Apne Course ka Naam Likhein"><input placeholder="Course ki Price - Rs."><button class="btn green" onclick="alert('Course Add Ho Gaya!')">Course Add Karein</button></div>
-<div class="card" id="promote"><h3>📢 Promote Channel / Page</h3><p>Apna YouTube Channel ya Facebook Page promote karwao.</p><a class="btn white" href="https://wa.me/923010929666?text=Mujhe%20Channel%20Promote%20Karwana%20Hai">Promote Karwao</a></div>
-<div class="card" id="market"><h3>🛒 Marketplace</h3><p>Yahan se cheezein khareedo aur becho.</p><a class="btn white" href="#library">Marketplace Dekhein</a></div>
-<div class="card" id="contact"><h3>📞 Contact Us</h3><p>Zaybi Bhai - Lahore, Pakistan<br>WhatsApp: 0301-0929666</p><a class="btn green" href="https://wa.me/923010929666">WhatsApp Karein</a></div>
-<div class="card" id="library"><h3>📚 120 Models Library - Sab Earning Tareeqay</h3>
-<p>Jo kaam karna hai us pe click karo. Video dekhni hai to Watch Video, Course bechna hai to Course Sale.</p>
-<input id="searchInput" placeholder="Search... Food, Video, Course, Shop" onkeyup="filterLib()">
-<select id="catFilter" onchange="filterLib()"><option value="all">Sab Categories</option><option value="Watch Video">Watch Video</option><option value="Course Sale">Course Sale</option><option value="Food">Food</option><option value="Online">Online</option><option value="Shop">Shop</option><option value="Service">Service</option></select>
-<div id="libList"></div><p id="countText" style="text-align:center;margin-top:8px"></p></div>
+</header>
+<div class="container">
+<div class="wallet">
+<h3>💰 Apka LCB Wallet</h3>
+<p style="font-size:22px;color:#22c55e"><b id="walletAmt">Rs. 0</b></p>
+<p style="font-size:12px" id="userShow">Guest User - Pehle Account Banayen</p>
+<button class="btn blue" onclick="withdraw()">💸 Withdraw - JazzCash / Easypaisa</button>
 </div>
-<footer>© 2026 LCB - Life Changing Business | Lahore</footer>
+<div class="card" id="signupCard">
+<h3>1. Account Banayen - LCB Join Karen</h3>
+<p>Link se ya Google par <b>LCB - Life Changing Business</b> likh kar aayen. Phir ye form bharen.</p>
+<input id="uName" placeholder="Apna Naam - Jese Ali Khan">
+<input id="uGmail" placeholder="Gmail - jese ali@gmail.com">
+<input type="password" id="uPass" placeholder="Password banayen">
+<input id="uPhone" placeholder="Phone Number - Wohi jo JazzCash / Easypaisa par hai">
+<button class="btn green" style="width:100%" onclick="sendCode()">Gmail Par Code Bhejen</button>
+<div id="codeBox" style="display:none">
+<input id="codeInput" placeholder="Gmail par aaya Code likhen - Demo Code: 1234">
+<button class="btn orange" style="width:100%" onclick="verifyCode()">Verify Kar Ke Account Banayen</button>
+</div>
+<p id="signupMsg" style="color:#22c55e;margin-top:8px"></p>
+</div>
+<div class="card">
+<h3>2. Zaybi Dost - Apka AI Dost 🤖</h3>
+<p>Zaybi Dost ko LCB ki <b>sari maloomat</b> hai. Wo apki zuban me baat karega - Urdu, English, Punjabi, Saraiki. Apne zehan ki baat batayen, wo rasta batayega. Owner ko sar-dard nahi hoga, Zaybi Dost khud sab sambhalega.</p>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<button class="btn green" onclick="openZaybi()">Zaybi Dost Kholen</button>
+<button class="btn white" onclick="quickAsk('Mujhe earning karni hai')">Mujhe Earning Karni Hai</button>
+<button class="btn white" onclick="quickAsk('Mujhe promote karna hai')">Promote Karna Hai</button>
+<button class="btn white" onclick="quickAsk('Mujhe course bechna hai')">Course Bechna Hai</button>
+</div>
+<div id="zaybiChat">
+<div id="zaybiMsg">🤖 <b>Zaybi Dost:</b> Assalam-o-Alaikum! Mera naam Zaybi Dost hai. Batayen, apko kya chahiye? Ap kis tarah earning karna chahte hain? Hamare paas 120 models hain. Ap apne zehan ki baat batayen, main step by step samjha dunga.<br><br></div>
+<input id="zaybiInput" placeholder="Yahan likhen... Jese: mujhe video dekh kar earning karni hai">
+<button class="btn green" style="width:100%" onclick="zaybiReply()">Bhejen</button>
+</div>
+</div>
+<div id="detailBox">
+<h3 id="detailTitle" style="color:#f97316">Model Detail</h3>
+<p id="detailDesc"></p>
+<button class="btn green" onclick="startModel()">✅ Is Model Ko Start Karen</button>
+<button class="btn white" onclick="document.getElementById('detailBox').style.display='none'">Band Karen</button>
+</div>
+<div class="card">
+<h3>3. Watch Video - Task Karke Earning 🎥</h3>
+<p>Click karen -> YouTube Video khulegi -> 2-3 minute dekhen -> Wapis aakar Task Complete karen -> Earning Wallet me. Sab LCB ke andar hi hoga.</p>
+<button class="btn white" onclick="watchVideo()">▶️ Video Dekhen</button>
+<button class="btn green" onclick="completeTask()">✅ Task Complete Karen - Rs. 20 Milenge</button>
+<p style="margin-top:8px">Aaj ke Tasks: <b id="taskCount">0 / 10</b></p>
+</div>
+<div class="card">
+<h3>4. Promote Channel - Followers / Likes / Watch Time 🚀</h3>
+<p>Apko kya chahiye? Zaybi Dost puchega, ap select karen, phir package aayega.</p>
+<select id="promoteType" onchange="updatePromo()"><option>Followers</option><option>Likes</option><option>Watch Time</option><option>Subscribers</option><option>Views</option></select>
+<select id="platform"><option>YouTube</option><option>TikTok</option><option>Instagram</option><option>Facebook</option></select>
+<div class="price-box" id="promoBoxes"></div>
+<p id="orderMsg" style="color:#22c55e;margin-top:8px"></p>
+</div>
+<div class="card">
+<h3>5. Courses - Seekhen Aur Bechen 📚</h3>
+<p>Jiske paas course hai, wo yahan lagaye. Jese Female Silai Course, Freelancing, Video Editing, Trading. Log khareedenge to apko earning hogi. LCB commission lega.</p>
+<input id="courseName" placeholder="Course ka naam - Jese Silai Course">
+<input id="coursePrice" placeholder="Course ki Price - Jese 1500">
+<textarea id="courseDesc" placeholder="Course me kya sikhayenge? 1-2 lines likhen"></textarea>
+<button class="btn orange" style="width:100%" onclick="addCourse()">Mera Course LCB Par Lagayen</button>
+<div id="courseList" style="margin-top:10px"></div>
+</div>
+<div class="card">
+<h3>6. 120 Online Earning Models - Master Library 📚</h3>
+<p>Kisi bhi model par click karen, wo <b>LCB ke andar hi</b> khulega. WhatsApp par nahi jayega. Sirf Owner se baat karne wala button WhatsApp par jayega.</p>
+<div class="tabs">
+<span class="tab active" onclick="filterCat('all',this)">Sab 120</span>
+<span class="tab" onclick="filterCat('Marketplace',this)">Marketplace</span>
+<span class="tab" onclick="filterCat('Education',this)">Education</span>
+<span class="tab" onclick="filterCat('Advertising',this)">Advertising</span>
+<span class="tab" onclick="filterCat('Creator',this)">Creator</span>
+<span class="tab" onclick="filterCat('Business',this)">Business</span>
+</div>
+<div id="allModels"></div>
+</div>
+<div id="ownerPanel">
+<b>Owner Panel - WhatsApp Number Badlen ⚙️</b>
+<p style="font-size:13px;margin:6px 0">Owner ke paas Authority hai. Yahan se apna WhatsApp Number badal sakte hain. Customer isi number par jayega.</p>
+<input id="waNumber" value="923001234567" placeholder="923001234567 - 92 ke saath likhen, 0 ke baghair">
+<button class="btn green" onclick="saveWA()">Number Save Karen</button>
+<p id="waMsg" style="color:green"></p>
+</div>
+<p style="text-align:center;font-size:12px;color:#94a3b8;margin:20px 0">© LCB - Life Changing Business | Zaybi Dost Apke Saath Hai</p>
+</div>
 <script>
-function toggleMenu(){document.getElementById("sidebar").classList.toggle("open");document.getElementById("overlay").classList.toggle("show");}
-function copyRef(){navigator.clipboard.writeText(document.getElementById("refText").innerText);alert("Referral Link Copy Ho Gaya!");}
-const base=[["Watch Video - YouTube Earning","Watch Video","Video dekho aur earning karo."],["Watch Video - Ads Dekho","Watch Video","Ads dekh ke paisa kamao."],["Course Sale - English Course","Course Sale","Apna English course becho."],["Course Sale - Computer Course","Course Sale","Computer course sale karo."],["Food - Biryani Stall","Food","Roz ki cash income."],["Food - Burger Point","Food","Students ka favourite."],["Online - Freelancing","Online","Skill se dollar kamao."],["Online - YouTube Channel","Online","Video banao paisa kamao."],["Shop - Kirana Store","Shop","Mohalle ka pakka business."],["Service - Mobile Repair","Service","Har gali me zaroorat."]];
-let all=[];for(let i=1;i<=120;i++){let m=base[(i-1)%base.length];all.push({name:m[0]+" "+i,cat:m[1],desc:m[2]});}
-function show(list){let h="";list.forEach(x=>{h+=`<div class="lib-card"><b>${x.name}</b> <span>${x.cat}</span><p>${x.desc}</p><a href="#promoteNew"
-" style="color:#16a34a;font-weight:bold;text-decoration:none">Is Kaam Ke Liye Rabta Karein →</a></div>`});document.getElementById("libList").innerHTML=h;document.getElementById("countText").innerText=list.length+" Models Milay";}
-function filterLib(){let s=document.getElementById("searchInput").value.toLowerCase();let c=document.getElementById("catFilter").value;show(all.filter(x=>(c==="all"||x.cat===c)&&x.name.toLowerCase().includes(s)));}
-show(all);
-</script>
-  <!-- ===== PROMOTE CHANNEL + OWNER PANEL ===== -->
-<div style="background:#1a1a2e; padding:20px; border-radius:15px; margin:15px;">
-  <h2 style="color:#00ff88;">📢 Channel Promote Karein</h2>
-  <p style="color:white;">Promote Fees: <b id="showPrice" style="color:#00ff88;">Rs. 0</b></p>
-  <p style="color:white;">Payment bhejein is number pe:</p>
-  <p style="background:white; padding:10px; border-radius:10px;">
-    JazzCash: <b id="showJazz">03010929666</b><br>
-    Easypaisa: <b id="showEasy">03010929666</b>
-  </p>
-
-  <input id="chName" type="text" placeholder="Channel ka Naam" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
-  <input id="chLink" type="text" placeholder="Channel ka Link" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
-  <input id="chVideo" type="text" placeholder="Video ka Link" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
-  
-  <select id="payMethod" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
-    <option>JazzCash</option>
-    <option>Easypaisa</option>
-  </select>
-  <input id="payNumber" type="text" placeholder="Jis Number se Payment ki hai" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
-  <input id="payTrx" type="text" placeholder="Transaction ID / TID" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
-
-  <button onclick="promoteChannel()" style="width:100%; background:#00ff88; padding:14px; border:none; border-radius:10px; font-weight:bold;">Pay Karke Promote Karein</button>
-
-  <h3 style="color:white; margin-top:20px;">🔥 Promoted Channels</h3>
-  <div id="promotedList"></div>
-</div>
-
-<!-- ===== OWNER PANEL - SIRF OWNER KE LIYE ===== -->
-<div style="background:#222; padding:20px; border-radius:15px; margin:15px; border:2px dashed #ffaa00;">
-  <h2 style="color:#ffaa00;">⚙️ Owner Panel - Payment Setting</h2>
-  <p style="color:#ccc; font-size:13px;">Sirf Owner ke liye hai. Yahan se Price aur Number badlein.</p>
-  
-  <input id="adminPass" type="password" placeholder="Owner Password likhein" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
-  <button onclick="unlockOwner()" style="width:100%; background:#ffaa00; padding:12px; border:none; border-radius:10px; font-weight:bold;">Owner Panel Kholein</button>
-
-  <div id="ownerControls" style="display:none; margin-top:15px;">
-    <label style="color:white;">Promote Fees (Rs.) - Abhi 0 hai, yahan se badlein</label>
-    <input id="setPrice" type="number" placeholder="e.g. 200" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
-    
-    <label style="color:white;">JazzCash Number - Alag se badal sakte hain</label>
-    <input id="setJazz" type="text" placeholder="JazzCash Number" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
-    
-    <label style="color:white;">Easypaisa Number - Alag se badal sakte hain</label>
-    <input id="setEasy" type="text" placeholder="Easypaisa Number" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
-    
-    <label style="color:white;">Owner Password Badlein</label>
-    <input id="setPass" type="text" placeholder="Naya Password" style="width:100%; padding:12px; margin:5px 0; border-radius:10px;">
-
-    <button onclick="saveOwnerSettings()" style="width:100%; background:#00ff88; padding:14px; border:none; border-radius:10px; font-weight:bold; margin-top:10px;">Save Karein - Sab ke paas Update Ho Jayega</button>
-    <p style="color:#00ff88; text-align:center;" id="saveMsg"></p>
-  </div>
-</div>
-
-<script>
-let settings = JSON.parse(localStorage.getItem('lcb_settings')) || { price: 0, jazz: '03010929666', easy: '03010929666', pass: 'bs226762' };
-
-function loadSettings(){
-  document.getElementById('showPrice').innerText = 'Rs. ' + settings.price;
-  document.getElementById('showJazz').innerText = settings.jazz;
-  document.getElementById('showEasy').innerText = settings.easy;
-  document.getElementById('setPrice').value = settings.price;
-  document.getElementById('setJazz').value = settings.jazz;
-  document.getElementById('setEasy').value = settings.easy;
-  document.getElementById('setPass').value = settings.pass;
+let waNum = localStorage.getItem('lcb_wa') || "923001234567";
+let wallet = parseInt(localStorage.getItem('lcb_wallet')||0);
+let userName = localStorage.getItem('lcb_name')||"";
+let tasksDone = 0;
+let currentModel = "";
+function refreshWallet(){ document.getElementById('walletAmt').innerText='Rs. '+wallet; if(userName) document.getElementById('userShow').innerText='Welcome, '+userName+' - Zaybi Dost apke saath hai'; }
+refreshWallet();
+let allData = [
+{cat:"🟦 Marketplace — 12", items:["E-commerce marketplace","Digital products marketplace","Course marketplace","Freelancing marketplace","Services marketplace","Local services marketplace","Jobs marketplace","Projects marketplace","Creator marketplace","Design marketplace","Consultation marketplace","Event/ticket marketplace"]},
+{cat:"🟩 Education & Skills — 10", items:["Paid courses","Premium courses","Live classes","Workshops","Webinars","Certifications","Skill assessments","Job training","Coaching","Learning subscriptions"]},
+{cat:"🟨 Advertising & Brands — 12", items:["Website advertising","Sponsored posts","Sponsored videos","Brand campaigns","Featured businesses","Featured products","Featured services","Sponsored newsletters","Sponsored communities","Business promotion packages","Marketplace advertising","Search-result promotion"]},
+{cat:"🟧 Affiliate & Partnerships — 10", items:["Product affiliate","Software affiliate","Hosting affiliate","Education affiliate","Travel affiliate","Business-service affiliate","Financial-service referrals","Telecom/service referrals","Partner offers","Commission-based referrals"]},
+{cat:"🟥 Creator Economy — 10", items:["Creator subscriptions","Creator marketplace","UGC campaigns","Digital creator products","Creator courses","Creator consultations","Creator sponsorships","Tips/support","Paid communities","Creator promotion tools"]},
+{cat:"🟪 Business & B2B — 12", items:["Business directory","Premium business profiles","Lead generation","Recruitment services","Business automation","Digital marketing services","Customer-support services","Website-building services","Business analytics","SaaS tools","White-label services","Enterprise subscriptions"]},
+{cat:"🟫 Digital Services — 10", items:["CV/resume service","Portfolio builder","Graphic-design services","Video-editing services","Writing services","Translation services","Photography services","Social-media services","Web-development services","AI-powered services"]},
+{cat:"🔵 Research & Activities — 10", items:["Market research","Legitimate surveys","Sponsored research","Brand feedback","Product testing","Lead-generation activities","Sponsored activities","Partner offers","Learning activities","Community activities"]},
+{cat:"🟣 Content & Media — 8", items:["Premium articles","Premium videos","Paid newsletters","Podcast sponsorships","Digital magazines","Premium reports","Industry reports","Content licensing"]},
+{cat:"⚫ Technology — 10", items:["SaaS subscriptions","AI tools","API services","Business dashboards","Automation tools","Data/analytics services","Website tools","Developer tools","White-label technology","Platform licensing"]},
+{cat:"🟢 Community & Membership — 8", items:["Premium membership","Professional communities","Business communities","Learning communities","Expert communities","Paid groups","Premium networking","Member benefits program"]},
+{cat:"🟠 Future Models — 8", items:["E-commerce fulfillment partnerships","Logistics partnerships","Event management services","Business consultation packages","Digital marketing packages","Managed business pages","Software reselling","Technology partnerships"]}
+];
+let counter=0;
+let container=document.getElementById('allModels');
+allData.forEach(g=>{
+  let div=document.createElement('div'); div.className='cat'; div.setAttribute('data-cat',g.cat);
+  div.innerHTML=`<h4>${g.cat}</h4><div class="grid"></div>`;
+  let grid=div.querySelector('.grid');
+  g.items.forEach(m=>{
+    counter++;
+    let d=document.createElement('div'); d.className='model';
+    let status = counter<=12 ? '🟢 Active - Click karen' : '🟡 Coming Soon - Zaybi Dost ko batayen';
+    d.innerHTML=`<b>${counter}. ${m}</b><br><span>${status}</span>`;
+    d.onclick=()=>openModel(counter,m);
+    grid.appendChild(d);
+  });
+  container.appendChild(div);
+});
+function openModel(num,name){
+  currentModel=name;
+  let box=document.getElementById('detailBox'); box.style.display='block';
+  document.getElementById('detailTitle').innerText=num+'. '+name;
+  document.getElementById('detailDesc').innerText='Ye model LCB ke andar hi kaam karega. '+name+' me ap kaise earning karenge, Zaybi Dost apko step by step batayega. Agar ye Active hai to abhi Start kar sakte hain, agar Coming Soon hai to Zaybi Dost ko batayen ke apko ye chahiye, wo apko batayega kab aayega. Payment JazzCash / Easypaisa se hogi, sab LCB Wallet me hoga.';
+  box.scrollIntoView({behavior:'smooth'});
+  openZaybi();
 }
-loadSettings();
-
-function unlockOwner(){
-  var p = document.getElementById('adminPass').value;
-  if(p == settings.pass){
-    document.getElementById('ownerControls').style.display = 'block';
-    alert('Owner Panel Khul Gaya!');
-  } else { alert('Ghalat Password!'); }
+function startModel(){
+  wallet+=10; localStorage.setItem('lcb_wallet',wallet); refreshWallet();
+  alert(currentModel+' Start ho gaya! Zaybi Dost apko agla step batayega. Demo me Rs.10 Wallet me add ho gaye.');
 }
-
-function saveOwnerSettings(){
-  settings.price = document.getElementById('setPrice').value;
-  settings.jazz = document.getElementById('setJazz').value;
-  settings.easy = document.getElementById('setEasy').value;
-  settings.pass = document.getElementById('setPass').value;
-  localStorage.setItem('lcb_settings', JSON.stringify(settings));
-  loadSettings();
-  document.getElementById('saveMsg').innerText = '✅ Save Ho Gaya! Ab Member ko Naya Price aur Naya Number Nazar Aayega.';
+function filterCat(c,el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); el.classList.add('active');
+  document.querySelectorAll('.cat').forEach(cat=>{
+    if(c=='all') cat.style.display='block';
+    else cat.style.display = cat.innerText.includes(c) ? 'block' : 'none';
+  });
 }
-
-function promoteChannel(){
-  var name = document.getElementById('chName').value;
-  var link = document.getElementById('chLink').value;
-  var video = document.getElementById('chVideo').value;
-  if(name=="" || link==""){ alert("Naam aur Link zaroor likhein"); return; }
-  var list = document.getElementById('promotedList');
-  list.innerHTML += "<div style='background:white; padding:12px; border-radius:10px; margin:8px 0;'><b>"+name+"</b><br><a href='"+link+"' target='_blank'>Channel Dekhein</a> | <a href='"+video+"' target='_blank'>Video Dekhein</a><br><small>Fees: Rs. "+settings.price+"</small></div>";
-  alert("Shukriya! Aapka channel promote ke liye add ho gaya. Owner check karke approve karega.");
+function sendCode(){ if(!document.getElementById('uGmail').value){ alert('Pehle Gmail likhen'); return; } document.getElementById('codeBox').style.display='block'; alert('Demo ke liye Code 1234 hai. Real me ye Gmail par jayega.'); }
+function verifyCode(){
+  if(document.getElementById('codeInput').value=='1234'){
+    userName=document.getElementById('uName').value||'Bhai';
+    localStorage.setItem('lcb_name',userName);
+    document.getElementById('signupMsg').innerText='Mubarak '+userName+'! Apka Account ban gaya. Ab Zaybi Dost apse baat karega.';
+    refreshWallet(); openZaybi();
+    document.getElementById('zaybiMsg').innerHTML+=`🤖 <b>Zaybi Dost:</b> Assalam-o-Alaikum ${userName}! Welcome to LCB. Batayen, apko kya chahiye? Video dekh kar earning, Promote, ya Course?<br><br>`;
+  } else alert('Ghalat Code! Demo Code 1234 hai');
 }
-</script>
-</body>
-</html>
+function openZaybi(){ document.getElementById('zaybiChat').style.display='block'; document.getElementById('zaybiChat').scrollIntoView({behavior:'smooth'}); }
+function quickAsk(q){ openZaybi(); document.getElementById('zaybiInput').value=q; zaybiReply(); }
+function zaybiReply(){
+  let v=document.getElementById('zaybiInput').value; if(!v) return;
+  let box=document.getElementById('zaybiMsg');
+  let name = userName||'Bhai';
+  box.innerHTML+=`👤 <b>${name}:</b> ${v}<br>`;
+  let low=v.toLowerCase();
+  let ans=`Bilkul ${name}! Main Zaybi Dost hun. Apne sahi jagah aaye hain. Batayen, apko Video dekh kar earning karni hai, Promote karna hai, ya Course bechna hai? Main step by step samjha dunga. Hamare paas 120 models hain.`;
+  if(low.includes('video')||low.includes('watch')) ans=`${name}, Video wala Task bohot asaan hai. Oopar Watch Video par click karen, 2-3 minute video dekhen, phir Task Complete dabayen. Har task par Rs.20 Wallet me aa jayenge.`;
+  if(low.includes('promote')||low.includes('follower')||low.includes('like')||low.includes('subscriber')) ans=`${name}, Promote ke liye oopar Promote Channel wala section dekhen. Apko Followers chahiye, Likes chahiye ya Watch Time? 500 me 1000, 1000 me 2500, 2000 me 6000 ka package hai. Package select karen, order LCB me hi ho jayega.`;
+  if(low.includes('course')||low.includes('silai')||low.includes('seekh')) ans=`${name}, Course ke liye oopar Courses wala section hai. Agar apke paas course hai, jese Silai Course, to naam aur price likhen, LCB par lag jayega. Log khareedenge to apko earning hogi. Agar seekhna hai to list me se course select karen.`;
+  if(low.includes('earning')||low.includes('paisa')||low.includes('kamana')) ans=`${name}, Earning ke 120 tareeqe hain! Sab se asaan: 1) Video dekh kar Task, 2) Course bech kar, 3) Services de kar, 4) Affiliate se. Ap batayen apko kya aata hai? Main us hisaab se best model batata hun.`;
+  if(low.includes('withdraw')||low.includes('jazzcash')||low.includes('easypaisa')) ans=`${name}, Withdraw bohot asaan hai. Wallet me earning aane ke baad Withdraw button dabayen, apke JazzCash / Easypaisa wale number par paisa aa jayega.`;
+  if(low.includes('hello')||low.includes('salam')||low.includes('assalam')) ans=`Walaikum Assalam ${name}! Kaisay hain ap? Main Zaybi Dost hun, LCB ka AI Dost. Batayen kya help karun?`;
+  box.innerHTML+=`🤖 <b>Zaybi Dost:</b> ${ans}<br><br>`;
+  document.getElementById('zaybiInput').value=''; box.scrollTop=box.scrollHeight;
+}
+function watchVideo(){ alert('Video khul rahi hai... 2-3 minute poori dekhen, phir wapis aakar Task Complete dabayen.'); window.open('https://www.youtube.com','_blank'); }
+function completeTask(){ tasksDone++; wallet+=20; localStorage.setItem('lcb_wallet',wallet); refreshWallet(); document.getElementById('taskCount').innerText=tasksDone+' / 10'; alert('Mubarak! Task Complete. Rs.20 Wallet me add ho gaye.'); }
+function updatePromo(){
+  let type=document.getElementById('promoteType').value;
+  let boxes=document.getElementById('promoBoxes');
+  let unit = type=='Watch Time' ? 'Hours Watch Time' : type=='Likes' ? 'Likes' : type=='Views' ? 'Views' : type=='Subscribers' ? 'Subscribers' : 'Followers';
+  boxes.innerHTML=`<div class="price" onclick="orderPkg(500)"><b>Rs. 500</b><br>1000 ${unit}<br><button class="btn green" style="margin-top:6px">Order Karen</button></div><div class="price" onclick="orderPkg(1000)"><b>Rs. 1000</b><br>2500 ${unit}<br><button class="btn green" style="margin-top:6px">Order Karen</button></div><div class="price" onclick="orderPkg(2000)"><b>Rs. 2000</b><br>6000 ${unit}<br><button class="btn green" style="margin-top:6px">Order Karen</button></div>`;
+}
+updatePromo();
+function orderPkg(price){ document.getElementById('orderMsg').innerText='Apka '+document.getElementById('platform').value+' par '+document.getElementById('promoteType').value+' ka Rs.'+price+' wala order LCB me mil gaya hai. Payment ke baad kaam shuru ho jayega.'; }
+function addCourse(){ let n=document.getElementById('courseName').value; let pr=document.getElementById('coursePrice').value; let d=document.getElementById('courseDesc').value; if(!n) return alert('Course ka naam likhen'); document.getElementById('courseList').innerHTML+=`<div style="background:#0f172a;padding:12px;border-radius:10px;margin-top:6px">📚 <b>${n}</b> - Rs.${pr}<br><span style="font-size:12px;color:#cbd5e1">${d}</span><br><button class="btn green" style="padding:6px 12px;margin-top:6px" onclick="buyCourse('${n}',${pr||0})">Buy Karen</button></div>`; }
+function buyCourse(n,pr){ wallet+=pr; localStorage.setItem('lcb_wallet',wallet); refreshWallet(); alert(n+' khareedne ke liye LCB Wallet se payment hogi. Demo me seller ko earning mil gayi.'); }
+function withdraw(){ if(wallet<100) return alert('Withdraw ke liye kam se kam Rs.100 chahiye. Pehle Tasks karen.'); alert('Withdraw Request mil gayi! Rs.'+wallet+' apke JazzCash / Easypaisa number par bheje jayenge.'); }
+function openWhatsApp(){ window.open('https://wa.me/'+waNum+'?text=Assalam-o-Alaikum LCB Owner, m
